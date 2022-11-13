@@ -18,7 +18,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="container">
-            <form method="POST" action="enviar.php">
+            <form method="GET" action="enviar.php">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Nome</label>
                     <input name ='nome' type="text" class="form-control" id="exampleFormControlInput1" placeholder="Insira seu nome">

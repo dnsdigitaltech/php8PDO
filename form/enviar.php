@@ -1,6 +1,9 @@
 <?php
-    $nome       = $_POST['nome'];
-    $email      = $_POST['email'];
-    $mensagem   = $_POST['mensagem'];
-    var_dump($nome, $email,$mensagem);
+    $nome       = $_GET['nome'];
+    $email      = $_GET['email'];
+    $mensagem   = $_GET['mensagem'];
+    
+    $conteudo = utf8_decode('Nome'. $nome."\r\n");
+
+
 ?>
