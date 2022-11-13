@@ -12,5 +12,7 @@
     $cabecalhos = "From: ".$email;
     mail($remetente, $assunto, $mensagem, $cabecalhos);
 ?>
-
+<<script>
+    alert('Enviado cm sucesso!')
+</script>
 <meta http-equiv="refresh" content="0; url=./">
