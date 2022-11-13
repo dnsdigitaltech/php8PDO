@@ -8,4 +8,9 @@
 
     echo $nome.' '.$sobrenome.'<br> tem '.$idade.' anos';
     echo '<p> Total: '.($idade + $numero);
+
+    //TOMADAS DE DECISÃO IF
+    if($idade > 30){
+        echo '<p>Idade maior que 30</p>';
+    }
 ?>
