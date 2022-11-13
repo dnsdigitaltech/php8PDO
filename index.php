@@ -19,7 +19,10 @@
     }
 
     //LAÇOS DE REPETIÇÃO
-    for($i = 0; $i < 5; $i++){
+    for($i = 0; $i <= $numero; $i++){
         echo '<br> O valor de i é: '.$i; 
+        if($i == 3){
+            echo ' Contador e 3';
+        }
     }
 ?>
