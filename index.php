@@ -7,5 +7,5 @@
 
 
     echo $nome.' '.$sobrenome.'<br> tem '.$idade.' anos';
-    echo '<br> Total: '.$idade+$numero;
+    echo '<p> Total: '.($idade + $numero);
 ?>
