@@ -17,4 +17,9 @@
     }else{
         echo '<p>Idade menor que '.$mediaIdade.'</p>';
     }
+
+    //LAÇOS DE REPETIÇÃO
+    for($i = 0; $i < 5; $i++){
+        echo '<br> O valor de i é: '.$i; 
+    }
 ?>
