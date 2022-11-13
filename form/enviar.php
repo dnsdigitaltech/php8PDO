@@ -12,3 +12,5 @@
     $cabecalhos = "From: ".$email;
     mail($remetente, $assunto, $mensagem, $cabecalhos);
 ?>
+
+<meta http-equiv="refresh" content="0; url=./">
