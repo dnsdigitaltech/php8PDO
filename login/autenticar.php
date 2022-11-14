@@ -13,6 +13,9 @@
     $total_res = @count($res);
 
     if($total_res > 0){
+        //CRIAR VARIAVEIS DE SESSÃO
+        $_SESSION['nome_usuario'] = $res[0]['nome'];
+        $_SESSION['nivel_usuario'] = $res[0]['nivel'];
         $nivel = $res[0]['nivel'];
         if($nivel == 'Administrador'){
             echo "<script language='javascript'> 
