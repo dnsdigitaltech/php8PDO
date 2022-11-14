@@ -92,17 +92,42 @@
     <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary">Salvar</button>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label for="NomeCad">Nome</label>
+                            <input type="text" name="nomeCad" class="form-control" id="NomeCad" aria-describedby="emailHelp" required>                    
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="emailCad">Email</label>
+                            <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" required>                    
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="senhaCad">Senha</label>
+                            <input type="password" name="senhaCad" class="form-control" id="senhaCad" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="senhaCad">Nível</label>
+                            <select class="form-select" aria-label="Default select" name="nivel">
+                                <option value="Cliente">Cliente</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Vendedor">Vendedor</option>
+                                <option value="Tesoureiro">Tesoureiro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" name="btnCadastrar">Salvar</button>
+                </div>
+            </form>
         </div>
     </div>
     </div>
