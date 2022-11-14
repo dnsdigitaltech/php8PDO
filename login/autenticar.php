@@ -1,5 +1,6 @@
 <?php
     require_once("../conexao.php");
+    @session_start();
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
@@ -9,14 +10,26 @@
             $query->bindValue(":senha", $senha);
             $query->execute();
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
-    $total_res = count($res);
+    $total_res = @count($res);
 
-    $nivel = $res[0]['nivel'];
-    
     if($total_res > 0){
+        $nivel = $res[0]['nivel'];
+        if($nivel == 'Administrador'){
+            echo "<script language='javascript'> 
+                    window.location='painel-adm'
+                    </script>";
+        }else if($nivel == 'Cliente'){
+            echo "<script language='javascript'> 
+                    window.location='painel-cliente'
+                    </script>";
+        }else{
+            echo "<script language='javascript'> 
+                window.alert('Usuário sem permissão para acesso!')
+            </script>";
         echo "<script language='javascript'> 
-                window.location='painel-adm'
-                </script>";
+                window.location='../login'
+            </script>";
+        }
     }else{
         echo "<script language='javascript'> 
             window.alert('Dados Incorretos')
