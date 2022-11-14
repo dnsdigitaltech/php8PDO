@@ -75,10 +75,13 @@
             :email");
             $queryV->bindValue(":email", $_POST['emailCad']);
             $queryV->execute();
-            $reV = $queryV->fetchAll(PDO::FETCH_ASSOC);
+            $resV = $queryV->fetchAll(PDO::FETCH_ASSOC);
         $total_resV = @count($resV);
-        if($total_resV){
-            
+        if($total_resV > 0){
+            echo "<script language='javascript'> 
+                window.alert('O Usuário já está cadastrado!')
+            </script>";
+            exit();
         }
 
         $query = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, nivel) 

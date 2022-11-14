@@ -64,6 +64,7 @@
                 </thead>
                 <tbody>
                     <?php
+                        $txtBuscar = @$_GET['txtBuscar'];
                         $query = $pdo->query("SELECT * FROM usuarios");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         $totalRes = @count($res);
@@ -137,6 +138,20 @@
 
 <?php
     if(isset($_POST['btnCadastrar'])){
+
+        $queryV = $pdo->prepare("SELECT * FROM usuarios WHERE email = 
+            :email");
+            $queryV->bindValue(":email", $_POST['emailCad']);
+            $queryV->execute();
+            $resV = $queryV->fetchAll(PDO::FETCH_ASSOC);
+        $total_resV = @count($resV);
+        if($total_resV > 0){
+            echo "<script language='javascript'> 
+                window.alert('O Usuário já está cadastrado!')
+            </script>";
+            exit();
+        }
+
         $query = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, nivel) 
                         VALUES(:nome, :email, :senha, :nivel)");
             $query->bindValue(":nome", $_POST['nomeCad']);
