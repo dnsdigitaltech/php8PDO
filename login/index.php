@@ -2,6 +2,8 @@
 <link href="login.css" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <body>
@@ -24,11 +26,28 @@
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                             </div>
                             <div id="register-link" class="text-right mt-1">
-                                <a href="#" class="text-info">Cadastre-se</a>
+                                <a href="#" data-toggle="modal" data-target="modal-cadastrar" class="text-info">Cadastre-se</a>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-cadastrar" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastre-se</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
             </div>
         </div>
     </div>
