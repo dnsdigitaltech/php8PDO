@@ -70,7 +70,6 @@
 </body>
 <?php
     if(isset($_POST['btnCadastrar'])){
-        echo $_POST['nomeCad'];
         $query = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, nivel) 
                         VALUES(:nome, :email, :senha, :nivel)");
             $query->bindValue(":nome", $_POST['nomeCad']);
@@ -78,5 +77,8 @@
             $query->bindValue(":senha", $_POST['senhaCad']);
             $query->bindValue(":nivel", 'Cliente');
             $query->execute();
+        echo "<script language='javascript'> 
+            window.alert('Cadastrado com Sucesso!')
+        </script>";
     }
 ?>
