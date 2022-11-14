@@ -9,6 +9,20 @@
             $query->bindValue(":senha", $senha);
             $query->execute();
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
-            $total_res = count($res);
-            echo $total_res;
+    $total_res = count($res);
+
+    $nivel = $res[0]['nivel'];
+    
+    if($total_res > 0){
+        echo "<script language='javascript'> 
+                window.location='painel-adm'
+                </script>";
+    }else{
+        echo "<script language='javascript'> 
+            window.alert('Dados Incorretos')
+            </script>";
+        echo "<script language='javascript'> 
+            window.location='../login'
+            </script>";
+    }
 ?>
