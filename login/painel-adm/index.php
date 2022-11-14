@@ -19,118 +19,136 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="./">Administrador</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./">Usuários</a>
-                    </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./">Administrador</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="./">Usuários</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#"><?=$_SESSION['nome_usuario']?></a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../../logout.php">Sair</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Perfil
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><?=$_SESSION['nome_usuario']?></a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="../../logout.php">Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form method="GET" class="d-flex">
-                <input name="txtBuscar" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+                </ul>
+                <form method="GET" class="d-flex">
+                    <input name="txtBuscar" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                </div>
             </div>
-        </div>
-    </nav>
-    <div class="container">
-        <button class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</button>
-        <table class="table table-striped mt-4">
-            <thead>
-                <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Senha</th>
-                <th scope="col">Nível</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $query = $pdo->query("SELECT * FROM usuarios");
-                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                    $totalRes = @count($res);
-                    if($totalRes > 0){
-                        foreach ($res as $key => $total) {
-                            echo '
-                                <tr>
-                                    <td>'.$total['nome'].'</td>
-                                    <td>'.$total['email'].'</td>
-                                    <td>'.$total['senha'].'</td>
-                                    <td>'.$total['nivel'].'</td>
+        </nav>
+        <div class="container">
+            <button class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</button>
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Senha</th>
+                    <th scope="col">Nível</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM usuarios");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        $totalRes = @count($res);
+                        if($totalRes > 0){
+                            foreach ($res as $key => $total) {
+                                echo '
+                                    <tr>
+                                        <td>'.$total['nome'].'</td>
+                                        <td>'.$total['email'].'</td>
+                                        <td>'.$total['senha'].'</td>
+                                        <td>'.$total['nivel'].'</td>
+                                    </tr>';
+                            }
+                            
+                        }else{
+                            echo '<tr>
+                                    <td colspan="4">Não existem dados</td>
                                 </tr>';
                         }
-                        
-                    }else{
-                        echo '<tr>
-                                <td colspan="4">Não existem dados</td>
-                            </tr>';
-                    }
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <form method="POST">
-                <div class="modal-body">
-                    <div class="modal-body">
-                        <div class="form-group mb-2">
-                            <label for="NomeCad">Nome</label>
-                            <input type="text" name="nomeCad" class="form-control" id="NomeCad" aria-describedby="emailHelp" required>                    
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="emailCad">Email</label>
-                            <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" required>                    
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="senhaCad">Senha</label>
-                            <input type="password" name="senhaCad" class="form-control" id="senhaCad" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="senhaCad">Nível</label>
-                            <select class="form-select" aria-label="Default select" name="nivel">
-                                <option value="Cliente">Cliente</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Vendedor">Vendedor</option>
-                                <option value="Tesoureiro">Tesoureiro</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" name="btnCadastrar">Salvar</button>
-                </div>
-            </form>
+                    ?>
+                </tbody>
+            </table>
         </div>
-    </div>
-    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form method="POST">
+                        <div class="modal-body">
+                            <div class="modal-body">
+                                <div class="form-group mb-2">
+                                    <label for="NomeCad">Nome</label>
+                                    <input type="text" name="nomeCad" class="form-control" id="NomeCad" aria-describedby="emailHelp" required>                    
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="emailCad">Email</label>
+                                    <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" required>                    
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="senhaCad">Senha</label>
+                                    <input type="password" name="senhaCad" class="form-control" id="senhaCad" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="senhaCad">Nível</label>
+                                    <select class="form-select" aria-label="Default select" name="nivelCad">
+                                        <option value="Cliente">Cliente</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Vendedor">Vendedor</option>
+                                        <option value="Tesoureiro">Tesoureiro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" name="btnCadastrar">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </body>
 </html>
+
+<?php
+    if(isset($_POST['btnCadastrar'])){
+        $query = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, nivel) 
+                        VALUES(:nome, :email, :senha, :nivel)");
+            $query->bindValue(":nome", $_POST['nomeCad']);
+            $query->bindValue(":email", $_POST['emailCad']);
+            $query->bindValue(":senha", $_POST['senhaCad']);
+            $query->bindValue(":nivel", $_POST['nivelCad']);
+            $query->execute();
+        echo "<script language='javascript'> 
+            window.alert('Cadastrado com Sucesso!')
+        </script>";
+        echo "<script language='javascript'> 
+            window.location='./'
+            </script>";
+    }
+?>

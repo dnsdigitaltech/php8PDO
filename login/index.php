@@ -70,6 +70,17 @@
 </body>
 <?php
     if(isset($_POST['btnCadastrar'])){
+
+        $queryV = $pdo->prepare("SELECT * FROM usuarios WHERE email = 
+            :email");
+            $queryV->bindValue(":email", $_POST['emailCad']);
+            $queryV->execute();
+            $reV = $queryV->fetchAll(PDO::FETCH_ASSOC);
+        $total_resV = @count($resV);
+        if($total_resV){
+            
+        }
+
         $query = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, nivel) 
                         VALUES(:nome, :email, :senha, :nivel)");
             $query->bindValue(":nome", $_POST['nomeCad']);
