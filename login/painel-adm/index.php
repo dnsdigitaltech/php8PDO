@@ -62,12 +62,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                <?php
+                    $query = $pdo->query("SELECT * FROM usuarios");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $totalRes = @count($res);
+                    var_dump($totalRes);
+                    if($totalRes > 0){
+                        echo '
+                            <tr>
+                                <td>Mark</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>';
+                    }else{
+                        echo '<tr>
+                                <td colpan="4">Não existem dados</td>
+                            </tr>';
+                    }
+                ?>
             </tbody>
         </table>
     </div>
