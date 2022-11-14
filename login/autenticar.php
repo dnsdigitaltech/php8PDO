@@ -1,7 +1,9 @@
 <?php
+    require_once("conexao.php");
+
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    var_dump($email,$senha);
+    $query = $pdo->prepare('SELECT * FROM usuarios WHERE email = :email AND senha = :senha');
 
 ?>
