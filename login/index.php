@@ -37,26 +37,32 @@
     <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                    
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastre-se</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <form method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="NomeCad">Nome</label>
+                            <input type="text" name="NomeCad" class="form-control" id="NomeCad" aria-describedby="emailHelp" required>                    
+                        </div>
+                        <div class="form-group">
+                            <label for="emailCad">Email</label>
+                            <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" required>                    
+                        </div>
+                        <div class="form-group">
+                            <label for="senhaCad">Senha</label>
+                            <input type="password" name="senhaCad" class="form-control" id="senhaCad" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
