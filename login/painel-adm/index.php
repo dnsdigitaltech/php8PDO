@@ -43,12 +43,33 @@
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <form method="GET" class="d-flex">
+                <input name="txtBuscar" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             </div>
         </div>
     </nav>
+    <div class="container">
+        <button class="btn btn-info mt-4" type="submit">Novo Cadastro</button>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Nível</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </body>
 </html>
