@@ -52,7 +52,7 @@
         </div>
     </nav>
     <div class="container">
-        <button class="btn btn-info mt-4" type="submit">Novo Cadastro</button>
+        <button class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</button>
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
@@ -87,5 +87,25 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Salvar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     </body>
 </html>
