@@ -1,4 +1,5 @@
 <?php 
+    require_once("../../conexao.php");
     @session_start();
     //VERIFICA SE O USUÁRIO ESTÁ LOGADO E SE É DIFERENTE DE ADMINISTRADOR
     if(@$_SESSION['nivel_usuario'] != 'Administrador'){
@@ -66,18 +67,20 @@
                     $query = $pdo->query("SELECT * FROM usuarios");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     $totalRes = @count($res);
-                    var_dump($totalRes);
                     if($totalRes > 0){
-                        echo '
-                            <tr>
-                                <td>Mark</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>';
+                        foreach ($res as $key => $total) {
+                            echo '
+                                <tr>
+                                    <td>'.$total['nome'].'</td>
+                                    <td>'.$total['email'].'</td>
+                                    <td>'.$total['senha'].'</td>
+                                    <td>'.$total['nivel'].'</td>
+                                </tr>';
+                        }
+                        
                     }else{
                         echo '<tr>
-                                <td colpan="4">Não existem dados</td>
+                                <td colspan="4">Não existem dados</td>
                             </tr>';
                     }
                 ?>
