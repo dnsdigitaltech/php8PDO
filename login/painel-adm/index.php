@@ -1,4 +1,5 @@
 <?php 
+    ini_set("display_errors", "on");
     require_once("../../conexao.php");
     @session_start();
     //VERIFICA SE O USUÁRIO ESTÁ LOGADO E SE É DIFERENTE DE ADMINISTRADOR
@@ -64,8 +65,11 @@
                 </thead>
                 <tbody>
                     <?php
-                        $txtBuscar = @$_GET['txtBuscar'];
-                        $query = $pdo->query("SELECT * FROM usuarios");
+                        $txtBuscar = '%' .@$_GET['txtBuscar']. '%';
+                        $query = $pdo->prepare("SELECT * FROM usuarios WHERE nome LIKE :nome OR  email LIKE :email");
+                        $query->bindValue(":nome", $txtBuscar);
+                        $query->bindValue(":email", $txtBuscar);
+                        $query->execute();
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         $totalRes = @count($res);
                         if($totalRes > 0){
