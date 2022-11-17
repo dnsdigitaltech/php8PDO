@@ -147,10 +147,10 @@
                                 <div class="form-group mb-2">
                                     <label for="senhaCad">Nível</label>
                                     <select class="form-select" aria-label="Default select" name="nivelCad" value="">
-                                        <option value="Cliente">Cliente</option>
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Vendedor">Vendedor</option>
-                                        <option value="Tesoureiro">Tesoureiro</option>
+                                        <option <?php echo $nivel_ed == 'Cliente' ? 'selected' : ''?> value="Cliente">Cliente</option>
+                                        <option <?php echo  $nivel_ed == 'Administrador' ? 'selected' : ''?> value="Administrador">Administrador</option>
+                                        <option <?php echo  $nivel_ed == 'Vendedor' ? 'selected' : ''?> value="Vendedor">Vendedor</option>
+                                        <option <?php echo  $nivel_ed == 'Tesoureiro' ? 'selected' : ''?> value="Tesoureiro">Tesoureiro</option>
                                     </select>
                                 </div>
                             </div>
