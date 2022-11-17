@@ -185,9 +185,11 @@
             </script>";
     }
 
-    if(isset($_GET['editar'])){
-        echo "<script> 
-                $('#modalCadastrar').modal('show')
-            </script>";
-    }
-?>
+    if(@$_GET['funcao'] == 'editar'){?>
+        <script> 
+            var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
+            document.onreadystatechange = function () {
+                myModal.show();
+            };
+        </script>
+    <?php }?>
