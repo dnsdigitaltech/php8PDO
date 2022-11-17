@@ -1,5 +1,5 @@
 <?php 
-    ini_set("display_errors", "on");
+    ini_set("display_errors", "of");
     require_once("../../conexao.php");
     @session_start();
     //VERIFICA SE O USUÁRIO ESTÁ LOGADO E SE É DIFERENTE DE ADMINISTRADOR
@@ -53,7 +53,7 @@
             </div>
         </nav>
         <div class="container">
-            <a href="index.php?funcao=novo" class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</a>
+            <a href="index.php?funcao=novo" class="btn btn-info mt-4" type="submit" >Novo Cadastro</a>
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
@@ -118,6 +118,13 @@
                             }else{
                                 $titulo_modal = 'Inserir Registro';
                             }
+                            $query = $pdo->query("SELECT * FROM usuarios WHERE id='$_GET[id]'");
+                            $res = $query->fetch(PDO::FETCH_ASSOC);
+                            
+                            $nome_ed   = $res['nome'];
+                            $email_ed  = $res['email'];
+                            $senha_ed  = $res['senha'];
+                            $nivel_ed  = $res['nivel'];
                         ?>
                         <h5 class="modal-title" id="modalCadastrarLabel"><?=$titulo_modal?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -127,19 +134,19 @@
                             <div class="modal-body">
                                 <div class="form-group mb-2">
                                     <label for="NomeCad">Nome</label>
-                                    <input type="text" name="nomeCad" class="form-control" id="NomeCad" aria-describedby="emailHelp" required>                    
+                                    <input type="text" name="nomeCad" class="form-control" id="NomeCad" aria-describedby="nomeHelp" value="<?= @$nome_ed ?>" required>                    
                                 </div>
                                 <div class="form-group mb-2">
                                     <label for="emailCad">Email</label>
-                                    <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" required>                    
+                                    <input type="email" name="emailCad" class="form-control" id="emailCad" aria-describedby="emailHelp" value="<?= @$email_ed ?>" required>                    
                                 </div>
                                 <div class="form-group mb-2">
                                     <label for="senhaCad">Senha</label>
-                                    <input type="password" name="senhaCad" class="form-control" id="senhaCad" required>
+                                    <input type="password" name="senhaCad" class="form-control" id="senhaCad" value="<?= @$senha_ed ?>" required>
                                 </div>
                                 <div class="form-group mb-2">
                                     <label for="senhaCad">Nível</label>
-                                    <select class="form-select" aria-label="Default select" name="nivelCad">
+                                    <select class="form-select" aria-label="Default select" name="nivelCad" value="">
                                         <option value="Cliente">Cliente</option>
                                         <option value="Administrador">Administrador</option>
                                         <option value="Vendedor">Vendedor</option>
@@ -201,7 +208,8 @@
         </script>
     <?php }?>
     <?php
-    if(@$_GET['funcao'] == 'editar'){?>
+    if(@$_GET['funcao'] == 'editar'){        
+        ?>
         <script> 
             var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
             document.onreadystatechange = function () {
