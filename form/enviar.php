@@ -10,7 +10,7 @@
                             'Mensagem'. $mensagem."\r\n");
 
     $cabecalhos = "From: ".$email;
-    mail($remetente, $assunto, $mensagem, $cabecalhos);
+    mail($remetente, $assunto, $conteudo, $cabecalhos);
 ?>
 <script>
     alert('Enviado com sucesso!')
