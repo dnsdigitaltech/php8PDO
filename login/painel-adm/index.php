@@ -53,7 +53,7 @@
             </div>
         </nav>
         <div class="container">
-            <button class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</button>
+            <a href="index.php?funcao=novo" class="btn btn-info mt-4" type="submit" data-bs-toggle="modal" data-bs-target="#modalCadastrar">Novo Cadastro</a>
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
@@ -108,14 +108,20 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" aria-hidden="true">
+        <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalCadastrarLabel">Cadastrar Usuário</h5>
+                        <?php 
+                            if(@$_GET['funcao'] == 'editar'){
+                                $titulo_modal = 'Editar Registro';
+                            }else{
+                                $titulo_modal = 'Inserir Registro';
+                            }
+                        ?>
+                        <h5 class="modal-title" id="modalCadastrarLabel"><?=$titulo_modal?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
                     <form method="POST">
                         <div class="modal-body">
                             <div class="modal-body">
@@ -184,7 +190,17 @@
             window.location='./'
             </script>";
     }
-
+?>
+<?php
+    if(@$_GET['funcao'] == 'novo'){?>
+        <script> 
+            var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
+            document.onreadystatechange = function () {
+                myModal.show();
+            };
+        </script>
+    <?php }?>
+    <?php
     if(@$_GET['funcao'] == 'editar'){?>
         <script> 
             var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
