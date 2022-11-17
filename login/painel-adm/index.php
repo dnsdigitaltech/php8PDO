@@ -88,7 +88,7 @@
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                 </svg>
                                             </a>
-                                            <a href="" title="Remover Registro" class="mr-1">
+                                            <a href="index.php?funcao=deletar&id='.$total['id'].'" title="Remover Registro" class="mr-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive text-danger" viewBox="0 0 16 16">
                                                     <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                                                 </svg>
@@ -107,7 +107,7 @@
             </table>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Criar Editar-->
         <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="modalCadastrarLabel" data-bs-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -166,7 +166,26 @@
                 </div>
             </div>
         </div>
-
+        <!-- Modal Deletar-->
+        <div class="modal fade" id="modalDeletar" tabindex="-1" aria-labelledby="modalCadastrarLabel" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h5 class="modal-title" id="modalCadastrarLabel">Excluir Registro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST">
+                        <div class="modal-body">
+                            Deseja realmente excluir este registro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger" name="bt-deletar">Excluir</button>                   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 
@@ -233,6 +252,17 @@
     }
 ?>
 <?php
+    if(isset($_POST['btnDeletar'])){        
+        $query = $pdo->query("DELETE FROM usuarios WHERE id = '$_GET[id]'");
+        echo "<script language='javascript'> 
+            window.alert('Excluido com Sucesso!')
+        </script>";
+        echo "<script language='javascript'> 
+            window.location='./'
+            </script>";
+    }
+?>
+<?php
     if(@$_GET['funcao'] == 'novo'){?>
         <script> 
             var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
@@ -240,14 +270,24 @@
                 myModal.show();
             };
         </script>
-    <?php }?>
-    <?php
+<?php }?>
+<?php
     if(@$_GET['funcao'] == 'editar'){        
-        ?>
-        <script> 
-            var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
-            document.onreadystatechange = function () {
-                myModal.show();
-            };
-        </script>
-    <?php }?>
+    ?>
+    <script> 
+        var myModal = new bootstrap.Modal(document.getElementById("modalCadastrar"), {});
+        document.onreadystatechange = function () {
+            myModal.show();
+        };
+    </script>
+<?php }?>
+<?php
+    if(@$_GET['funcao'] == 'deletar'){        
+    ?>
+    <script> 
+        var myModal = new bootstrap.Modal(document.getElementById("modalDeletar"), {});
+        document.onreadystatechange = function () {
+            myModal.show();
+        };
+    </script>
+<?php }?>
