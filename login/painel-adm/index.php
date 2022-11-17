@@ -115,8 +115,10 @@
                         <?php 
                             if(@$_GET['funcao'] == 'editar'){
                                 $titulo_modal = 'Editar Registro';
+                                $botao_modal = 'btnEditar';
                             }else{
                                 $titulo_modal = 'Inserir Registro';
+                                $botao_modal = 'btnCadastrar';
                             }
                             $query = $pdo->query("SELECT * FROM usuarios WHERE id='$_GET[id]'");
                             $res = $query->fetch(PDO::FETCH_ASSOC);
@@ -157,7 +159,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" name="btnCadastrar">Salvar</button>
+                            <button type="submit" class="btn btn-primary" name="<?= $botao_modal ?>">Salvar</button>
                         </div>
                     </form>
                 </div>
@@ -192,6 +194,37 @@
             $query->execute();
         echo "<script language='javascript'> 
             window.alert('Cadastrado com Sucesso!')
+        </script>";
+        echo "<script language='javascript'> 
+            window.location='./'
+            </script>";
+    }
+?>
+<?php
+    if(isset($_POST['btnEditar'])){
+
+        $queryV = $pdo->prepare("SELECT * FROM usuarios WHERE email = 
+            :email");
+            $queryV->bindValue(":email", $_POST['emailCad']);
+            $queryV->execute();
+            $resV = $queryV->fetchAll(PDO::FETCH_ASSOC);
+        $total_resV = @count($resV);
+        if($total_resV > 0){
+            echo "<script language='javascript'> 
+                window.alert('O Usuário já está cadastrado!')
+            </script>";
+            exit();
+        }
+
+        $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, nivel = :nivel");
+            $query->bindValue(":nome", $_POST['nomeCad']);
+            $query->bindValue(":email", $_POST['emailCad']);
+            $query->bindValue(":senha", $_POST['senhaCad']);
+            $query->bindValue(":nivel", $_POST['nivelCad']);
+            $query->bindValue(":id", $_GET['id']);
+            $query->execute();
+        echo "<script language='javascript'> 
+            window.alert('Editado com Sucesso!')
         </script>";
         echo "<script language='javascript'> 
             window.location='./'
