@@ -160,6 +160,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-primary" name="<?= $botao_modal ?>">Salvar</button>
+                            <input type="hidden" name="antigo" value="<?= @$email_ed ?>">                    
                         </div>
                     </form>
                 </div>
@@ -202,21 +203,21 @@
 ?>
 <?php
     if(isset($_POST['btnEditar'])){
-
-        $queryV = $pdo->prepare("SELECT * FROM usuarios WHERE email = 
-            :email");
-            $queryV->bindValue(":email", $_POST['emailCad']);
-            $queryV->execute();
-            $resV = $queryV->fetchAll(PDO::FETCH_ASSOC);
-        $total_resV = @count($resV);
-        if($total_resV > 0){
-            echo "<script language='javascript'> 
-                window.alert('O Usuário já está cadastrado!')
-            </script>";
-            exit();
+        if($_POST['antigo'] != ($_POST['emailCad'])){
+            $queryV = $pdo->prepare("SELECT * FROM usuarios WHERE email = 
+                :email");
+                $queryV->bindValue(":email", $_POST['emailCad']);
+                $queryV->execute();
+                $resV = $queryV->fetchAll(PDO::FETCH_ASSOC);
+            $total_resV = @count($resV);
+            if($total_resV > 0){
+                echo "<script language='javascript'> 
+                    window.alert('O Usuário já está cadastrado!')
+                </script>";
+                exit();
+            }
         }
-
-        $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, nivel = :nivel");
+        $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, senha = :senha, nivel = :nivel WHERE id = :id");
             $query->bindValue(":nome", $_POST['nomeCad']);
             $query->bindValue(":email", $_POST['emailCad']);
             $query->bindValue(":senha", $_POST['senhaCad']);
