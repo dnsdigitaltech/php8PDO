@@ -174,15 +174,15 @@
                         <h5 class="modal-title" id="modalCadastrarLabel">Excluir Registro</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="POST">
-                        <div class="modal-body">
-                            Deseja realmente excluir este registro?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger" name="bt-deletar">Excluir</button>                   
-                        </div>
-                    </form>
+                    <div class="modal-body">
+                        Deseja realmente excluir este registro?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form method="POST">
+                            <button type="submit" class="btn btn-danger" name="btnDeletar">Excluir</button>   
+                        </form>                
+                    </div>
                 </div>
             </div>
         </div>
